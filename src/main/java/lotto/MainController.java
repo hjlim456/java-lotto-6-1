@@ -18,11 +18,14 @@ public class MainController {
         int bonusNumber = createBonusNumber(winningLotto);
 
         Lottos purchasedLotto = buyLotto(budget);
+
+        System.out.println(purchasedLotto.printAllLottoNumbers());
     }
 
     private static int createBonusNumber(Lotto winningLotto) {
         while (true) {
             try {
+                System.out.println("보너스 숫자를 입력해주세요");
                 String input = Console.readLine();
                 int bonusNumber = Validator.parseAndValidateBonusNumber(input, winningLotto);
                 return bonusNumber;
@@ -33,6 +36,7 @@ public class MainController {
     }
 
     private static Lotto createWinningLotto() {
+        System.out.println("로또 번호 6자리를 입력해주세요");
         String input = Console.readLine();
         Validator.validateBlank(input);
         Validator.validateDeliiter(input);
@@ -53,6 +57,7 @@ public class MainController {
             Lotto lotto = new Lotto(lottoNumbers);
             lottos.addLotto(lotto);
         }
+        System.out.println(lottoCount + "개를 구매했습니다.");
         return lottos;
     }
 

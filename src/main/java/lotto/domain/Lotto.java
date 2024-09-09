@@ -21,9 +21,11 @@ public class Lotto {
     }
 
     public String printNumbers() {
-        return numbers.stream()
+        String numberString = numbers.stream()
+                .sorted()
                 .map(String::valueOf)
                 .collect(Collectors.joining(", "));
+        return "[" + numberString + "]";
     }
 
 }
