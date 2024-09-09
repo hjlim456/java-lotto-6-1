@@ -14,13 +14,25 @@ public class MainController {
 
     public static void run() {
         Budget budget = inputBudget();
-        Lotto WinningLotto = readWinningLotto();
-        //보너스 번호입력 구현하기
+        Lotto winningLotto = createWinningLotto();
+        int bonusNumber = createBonusNumber(winningLotto);
 
         Lottos purchasedLotto = buyLotto(budget);
     }
 
-    private static Lotto readWinningLotto() {
+    private static int createBonusNumber(Lotto winningLotto) {
+        while (true) {
+            try {
+                String input = Console.readLine();
+                int bonusNumber = Validator.parseAndValidateBonusNumber(input, winningLotto);
+                return bonusNumber;
+            } catch (IllegalArgumentException e) {
+                System.out.println("[ERROR] " + e.getMessage());
+            }
+        }
+    }
+
+    private static Lotto createWinningLotto() {
         String input = Console.readLine();
         Validator.validateBlank(input);
         Validator.validateDeliiter(input);

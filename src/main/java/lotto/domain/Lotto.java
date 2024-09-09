@@ -16,8 +16,11 @@ public class Lotto {
             throw new IllegalArgumentException();
         }
     }
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
 
-    public String getNumbers() {
+    public String printNumbers() {
         return numbers.stream()
                 .map(String::valueOf)
                 .collect(Collectors.joining(", "));

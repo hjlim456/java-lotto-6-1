@@ -1,5 +1,7 @@
 package lotto;
 
+import lotto.domain.Lotto;
+
 public class Validator {
     public static void validatePositiveNumber(String inputString) {
         if (Integer.parseInt(inputString)<=0){
@@ -38,6 +40,16 @@ public class Validator {
         if (number < 1 || number > 45) {
             throw new IllegalArgumentException("[ERROR] 번호는 1부터 45까지의 숫자여야 합니다.");
         }
+    }
+
+    public static int parseAndValidateBonusNumber(String input, Lotto winningLotto) {
+        validateBlank(input);
+
+        int bonusNumber = Validator.parseAndValidateNumber(input);
+        if (winningLotto.getNumbers().contains(bonusNumber)) {
+            throw new IllegalArgumentException("보너스 번호는 당첨 번호와 중복될 수 없습니다. 다시입력해주세요.");
+        }
+        return bonusNumber;
     }
 
 }
