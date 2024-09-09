@@ -12,4 +12,5 @@ public record Lottos(List<Lotto> lottoList) {
                 .map(Lotto::printNumbers)
                 .collect(Collectors.joining("\n"));
     }
+
 }
