@@ -28,6 +28,8 @@ public class MainController {
         compareLottos(resultMap,purchasedLottos, winningLotto, bonusNumber);
         OutputView.printResult(resultMap);
 
+        OutputView.calculateTotalReturnRate(budget,resultMap);
+
     }
 
     private static void compareLottos( Map<String, Long> resultMap,Lottos purchasedLottos, Lotto winningLotto, int bonusNumber) {
@@ -74,7 +76,7 @@ public class MainController {
                 int bonusNumber = Validator.parseAndValidateBonusNumber(input, winningLotto);
                 return bonusNumber;
             } catch (IllegalArgumentException e) {
-                System.out.println("[ERROR] " + e.getMessage());
+                System.out.println("[ERROR]" + e.getMessage());
             }
         }
     }
@@ -111,7 +113,7 @@ public class MainController {
             try {
                 budget = new Budget(InputView.readInteger("구입금액을 입력해 주세요."));
             } catch (IllegalArgumentException e) {
-                System.out.println("[ERROR] " + e.getMessage() + " 다시 입력해 주세요.");
+                System.out.println("[ERROR]" + e.getMessage() + " 다시 입력해 주세요.");
             }
         }
         return budget;
