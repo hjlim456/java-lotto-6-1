@@ -12,8 +12,8 @@
     - Lottos : Lotto객체의 List를 관리할 일급컬렉션
     - User :  winningLotto , bounusNumber, lottoBudget,  멤버변수를갖는다.
       - User의 멤버변수는 원시값으로 포장한다
-- exception
-    - 상세한 에러 클래스를 만든다.
+- Validator 클래스
+    - 공통 검증매서드를 관리한다
   
 
 # 📝 구현 기능 목록
