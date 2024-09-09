@@ -1,7 +1,6 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
-import lotto.message.ErrorMessage;
 
 public class InputView {
     public static int readInteger(String message) {
@@ -10,11 +9,18 @@ public class InputView {
             String inputString = Console.readLine();
             try {
                 validateBlank(inputString);
-                validateNumber(inputString);
+                validateType(inputString);
+                validatePositiveNumber(inputString);
                 return Integer.parseInt(inputString);
             } catch (IllegalArgumentException e) {
                 System.out.println("[Error]"+ e.getMessage());
             }
+        }
+    }
+
+    private static void validatePositiveNumber(String inputString) {
+        if (Integer.parseInt(inputString)<=0){
+            throw new IllegalArgumentException("0또는 음수는 입력할수없습니다. 양수를 입력해주세요");
         }
     }
 
@@ -24,7 +30,7 @@ public class InputView {
         }
     }
 
-    private static void validateNumber(String inputString) {
+    private static void validateType(String inputString) {
         try {
             Integer.parseInt(inputString);
         } catch (NumberFormatException e) {
