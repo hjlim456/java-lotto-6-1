@@ -1,4 +1,4 @@
 package lotto.message;
 
-public class ViewMessage {
+public enum ViewMessage {
 }
