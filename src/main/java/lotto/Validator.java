@@ -20,4 +20,24 @@ public class Validator {
             throw new IllegalArgumentException("문자를 입력하셨습니다. 숫자를 입력해주세요.");
         }
     }
+
+    public static void validateDeliiter(String input) {
+        input.contains(",");
+    }
+    public static Integer parseAndValidateNumber(String input) {
+        try {
+            int number = Integer.parseInt(input);
+            validateNumberRange(number);
+            return number;
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 숫자가 아닌 값을 입력하셨습니다.");
+        }
+    }
+
+    public static void validateNumberRange(int number) {
+        if (number < 1 || number > 45) {
+            throw new IllegalArgumentException("[ERROR] 번호는 1부터 45까지의 숫자여야 합니다.");
+        }
+    }
+
 }
