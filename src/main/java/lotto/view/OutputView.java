@@ -1,9 +1,6 @@
 package lotto.view;
 
-import camp.nextstep.edu.missionutils.Randoms;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import lotto.domain.Budget;
 import lotto.domain.Lotto;
@@ -11,7 +8,10 @@ import lotto.domain.Lottos;
 import lotto.message.ViewMessage;
 
 public class OutputView {
-
+    public static void printBuyResult(int lottoCount, Lottos lottos) {
+        System.out.println(lottoCount + ViewMessage.PURCHASED_COUNT_PRINT.getMessage());
+        System.out.println(lottos.printAllLottoNumbers());
+    }
     public static void printResult(Map<String, Long> resultMap) {
         resultMap.forEach((key, value) ->{
             System.out.println(key + value + "개");
@@ -43,16 +43,6 @@ public class OutputView {
         System.out.printf(ViewMessage.TOTAL_RETURN_RATE.getMessage(), returnRate);
     }
 
-    public static Lottos buyLotto(Budget budget) {
-        int lottoCount=budget.getAmount() / 1000;
-        Lottos lottos = new Lottos(new ArrayList<>());
 
-        for (int i = 0; i < lottoCount; i++) {
-            List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-            Lotto lotto = new Lotto(lottoNumbers);
-            lottos.addLotto(lotto);
-        }
-        System.out.println(lottoCount + ViewMessage.PURCHASED_COUNT_PRINT.getMessage());
-        return lottos;
-    }
+
 }

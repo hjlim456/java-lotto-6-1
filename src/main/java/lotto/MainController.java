@@ -1,13 +1,7 @@
 package lotto;
 
-import camp.nextstep.edu.missionutils.Console;
-import camp.nextstep.edu.missionutils.Randoms;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.stream.Stream;
 import lotto.domain.Budget;
 import lotto.domain.Lotto;
 import lotto.domain.Lottos;
@@ -22,8 +16,7 @@ public class MainController {
         Lotto winningLotto = InputView.createWinningLotto();
         int bonusNumber = InputView.createBonusNumber(winningLotto);
         //게임진행
-        Lottos purchasedLottos = OutputView.buyLotto(budget);
-        System.out.println(purchasedLottos.printAllLottoNumbers());
+        Lottos purchasedLottos = Lotto.buyLottoUsingBudget(budget);
 
         //GameEnd
         Map<String, Long> resultMap = new LinkedHashMap<>();
