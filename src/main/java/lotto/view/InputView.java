@@ -58,6 +58,10 @@ public class InputView {
                 .map(Validator::parseAndValidateNotNumber)
                 .sorted()
                 .toList();
+        if (winningNumbers.size() != 6) {
+            throw new IllegalArgumentException("로또번호는 6개를 입니다. 입력 갯수를 확인하세요");
+        }
+
         return new Lotto(winningNumbers);
     }
     public static int createBonusNumber(Lotto winningLotto) {
