@@ -1,13 +1,18 @@
 package lotto.view;
 
+import camp.nextstep.edu.missionutils.Randoms;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import lotto.domain.Budget;
+import lotto.domain.Lotto;
+import lotto.domain.Lottos;
+import lotto.message.ViewMessage;
 
 public class OutputView {
 
     public static void printResult(Map<String, Long> resultMap) {
-        // 각 항목을 출력하는 메서드
         resultMap.forEach((key, value) ->{
             System.out.println(key + value + "개");
                 }
@@ -35,6 +40,19 @@ public class OutputView {
         double returnRate = (double) totalPrize / totalInvestment * 100;
 
         // 결과 출력
-        System.out.printf("총 수익률은 %.1f%%입니다.%n", returnRate);
+        System.out.printf(ViewMessage.TOTAL_RETURN_RATE.getMessage(), returnRate);
+    }
+
+    public static Lottos buyLotto(Budget budget) {
+        int lottoCount=budget.getAmount() / 1000;
+        Lottos lottos = new Lottos(new ArrayList<>());
+
+        for (int i = 0; i < lottoCount; i++) {
+            List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            Lotto lotto = new Lotto(lottoNumbers);
+            lottos.addLotto(lotto);
+        }
+        System.out.println(lottoCount + ViewMessage.PURCHASED_COUNT_PRINT.getMessage());
+        return lottos;
     }
 }
