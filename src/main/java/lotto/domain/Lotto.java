@@ -3,8 +3,10 @@ package lotto.domain;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.stream.Collectors;
 import lotto.message.ViewMessage;
 import lotto.view.OutputView;
@@ -14,6 +16,7 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
+        validateDuplicatedNumber(numbers);
         this.numbers = numbers;
     }
 
@@ -30,11 +33,15 @@ public class Lotto {
         return lottos;
     }
 
-
-
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException();
+        }
+    }
+    private void validateDuplicatedNumber(List<Integer> numbers) {
+        Set<Integer> uniqueNumbers = new HashSet<>(numbers);
+        if (uniqueNumbers.size() != numbers.size()) {
+            throw new IllegalArgumentException("중복된 숫자가 있습니다.");
         }
     }
     public List<Integer> getNumbers() {
