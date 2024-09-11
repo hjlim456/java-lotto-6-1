@@ -49,4 +49,7 @@ public record Lottos(List<Lotto> lottoList) {
             resultMap.merge("6개 일치 (2,000,000,000원) - ", 1L, Long::sum);
         }
     }
+    public int getLottosSize() {
+        return lottoList.size();
+    }
 }
