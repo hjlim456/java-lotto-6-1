@@ -19,8 +19,7 @@ public class MainController {
         Lottos purchasedLottos = Lotto.buyLottoUsingBudget(budget);
 
         //GameEnd
-        Map<String, Long> resultMap = new LinkedHashMap<>();
-        Lottos.compareLottos(resultMap,purchasedLottos, winningLotto, bonusNumber);
+        Map<String, Long> resultMap = Lottos.compareLottos(purchasedLottos, winningLotto, bonusNumber);
 
         OutputView.printResult(resultMap);
         OutputView.calculateTotalReturnRate(budget,resultMap);
