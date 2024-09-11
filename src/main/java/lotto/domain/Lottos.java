@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -13,7 +14,8 @@ public record Lottos(List<Lotto> lottoList) {
                 .map(Lotto::printNumbers)
                 .collect(Collectors.joining("\n"));
     }
-    public static void compareLottos(Map<String, Long> resultMap, Lottos purchasedLottos, Lotto winningLotto, int bonusNumber) {
+    public static Map<String, Long> compareLottos(Lottos purchasedLottos, Lotto winningLotto, int bonusNumber) {
+        Map<String, Long> resultMap = new LinkedHashMap<>();
         List<Integer> winningLottoNumbers = winningLotto.getNumbers();
 
         for (Lotto lotto : purchasedLottos.lottoList()){
@@ -24,6 +26,7 @@ public record Lottos(List<Lotto> lottoList) {
             boolean hasBonus = purchasedNumbers.contains(bonusNumber);
             updateResult(resultMap, matchCount, hasBonus);
         }
+        return resultMap;
     }
 
     public static void updateResult(Map<String, Long> resultMap, long matchCount, boolean hasBonus) {
@@ -42,7 +45,7 @@ public record Lottos(List<Lotto> lottoList) {
         if (matchCount == 5 && hasBonus) {
             resultMap.merge("5개 일치, 보너스 볼 일치 (30,000,000원) - ", 1L, Long::sum);
         }
-        if (matchCount == 5) {
+        if (matchCount == 5 && !hasBonus) {
             resultMap.merge("5개 일치 (1,500,000원) - ", 1L, Long::sum);
         }
         if (matchCount == 6) {
