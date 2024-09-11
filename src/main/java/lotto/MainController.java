@@ -22,6 +22,7 @@ public class MainController {
         Map<String, Long> resultMap = Lottos.compareLottos(purchasedLottos, winningLotto, bonusNumber);
 
         OutputView.printResult(resultMap);
-        OutputView.calculateTotalReturnRate(budget,resultMap);
+        OutputView.printInvestmentRate(Budget.calculateTotalReturnRate(budget,resultMap));
+        ;
     }
 }
